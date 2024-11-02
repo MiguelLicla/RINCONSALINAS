@@ -1,0 +1,31 @@
+<div class="modal-body">
+    <form [formGroup]="mesaForm" (ngSubmit)="onSubmit()">
+        <h4 *ngIf="mesaId > 0" class="text-center">{{numeromesa}}</h4>
+        <h4 *ngIf="mesaId == 0" class="text-center">Nueva Mesa</h4>
+        <div class="col-sm-12 form-group">
+            <label>Número de Mesa</label>
+            <div class="form-check form-switch float-end">
+                <input type="checkbox" id="flagActivo" class="form-check-input text-end" formControlName="flagActivo" />
+                <label for="flagActivo" class="form-check-label text-end">Activo</label>
+            </div>
+            <input type="text" class="form-control" formControlName="numeroMesa" placeholder="Ingrese el número de la mesa" />
+            <div *ngIf="mesaForm.get('numeroMesa')?.invalid && mesaForm.get('numeroMesa')?.touched" class="text-danger">
+                El número de mesa es requerido.
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <label>Descripción</label>
+            <textarea cols="30" rows="2" class="form-control" formControlName="descripcion" placeholder="Ingrese una descripción"></textarea>
+            <div *ngIf="mesaForm.get('descripcion')?.invalid && mesaForm.get('descripcion')?.touched" class="text-danger">
+                La descripción es requerida.
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="modal-footer justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary me-2">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+        </div>
+    </form>
+</div>

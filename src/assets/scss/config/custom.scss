@@ -1,0 +1,139 @@
+
+.wp-100{ width: 100px;}
+.wp-150{ width: 150px;}
+.wp-200{ width: 200px;}
+.wp-250{ width: 250px;}
+.wp-300{ width: 300px;}
+.wp-350{ width: 350px;}
+.wp-400{ width: 400px;}
+
+
+.input-icon-start {
+  position: relative;
+  i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #aaa;
+  }
+
+  input {
+      padding-left: 30px;
+  }
+}
+
+.input-icon-end {
+  position: relative;
+  i {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #aaa;
+  }
+  input {
+      padding-right: 30px;
+  }
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.animate-spin {
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+  
+.animate-bounce {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+
+/* Escalado suave (zoom in) */
+@keyframes zoomIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .animate-zoom-in {
+    animation: zoomIn 0.5s ease forwards;
+  }
+  
+  /* Escalado en pulsación */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+
+  .animate-pulse {
+    animation: pulse 1.5s ease-in-out infinite ;
+  }
+  
+  /* Desvanecimiento */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in forwards;
+  }
+  
+  /* Vibración */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  .animate-shakePause {
+    animation: shake 0.5s ease-in-out infinite;
+  }
+
+
+  
+  @keyframes shakeWithPause {
+    0%, 100% {
+      transform: translateX(0);  // Estado inicial y final sin movimiento
+    }
+    10%, 20%, 30%, 40% {
+      transform: translateX(-5px); // Movimiento a la izquierda
+    }
+    5%, 15%, 25%, 35%, 45% {
+      transform: translateX(5px);  // Movimiento a la derecha
+    }
+    50% {
+      transform: translateX(0);  // Estado inicial y final sin movimiento
+    }
+
+
+    // 0%, 100%  {
+    //   transform: translateX(0);  // Volver al centro
+    // }
+    /* De 60% a 100%, no se especifican transformaciones, lo que causa la pausa */
+  }
+
+  .animate-shake {
+    animation: shakeWithPause 1.5s ease-in-out infinite;
+  }
+  
+  /* Rotación 3D */
+  @keyframes rotate3D {
+    0% { transform: rotateY(0); }
+    100% { transform: rotateY(360deg); }
+  }
+  
+  .animate-rotate-3d {
+    animation: rotate3D 2s ease-in-out infinite;
+  }
+  
+
+  

@@ -1,0 +1,37 @@
+<!-- Modal content -->
+<div class="modal-header">
+    <h4 class="modal-title">Seleccionar Platos</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body d-flex">
+    <!-- Izquierda: Lista de Platos Seleccionados -->
+    <div class="col-6 p-3 border-right">
+        <h5>Platos Seleccionados</h5>
+        <ul *ngIf="selectedDishes.length > 0; else emptyList">
+            <li *ngFor="let dish of selectedDishes">
+                {{ dish.nombre }} - ${{ dish.precio }}
+            </li>
+        </ul>
+        <ng-template #emptyList>
+            <p>No hay platos seleccionados.</p>
+        </ng-template>
+    </div>
+
+    <!-- Derecha: Lista de Platos con Fotos -->
+    <div class="col-6 p-3">
+        <h5>Platos Disponibles</h5>
+        <div *ngFor="let dish of dishesList" class="dish-card" (click)="selectDish(dish)">
+            <img [src]="dish.imagen" alt="{{ dish.nombre }}" class="img-fluid" />
+            <p>{{ dish.nombre }}</p>
+            <p>Precio: ${{ dish.precio }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+    <button type="button" class="btn btn-primary" >Guardar</button>
+</div>

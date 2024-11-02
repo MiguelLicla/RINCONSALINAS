@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+      <h4 class="card-title mb-0 flex-grow-1">Lista de Mesas</h4>
+      <div class="d-flex gap-1">
+        <button class="btn btn-primary m-1 wp-200" (click)="onNuevaMesa()">Nueva Mesa</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr class="text-center">
+              <th style="width: 100px">ID</th>
+              <th>Descripcion</th>
+              <th>Numero de mesa</th>
+              <th>Estado</th>
+              <th style="width: 100px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mesa of mesas; let i = index" class="text-center">
+              <td>{{ mesa?.mesaId }}</td>           
+              <td>{{ mesa?.descripcion}}</td>
+              <td>{{ mesa?.numeroMesa }}</td>
+              <td>
+                <span *ngIf="mesa.flagActivo" class="badge bg-success">Activo</span>
+                <span *ngIf="!mesa.flagActivo" class="badge bg-secondary">Desactivado</span>
+              </td>
+              <td class="text-end py-1">
+                <button type="button" class="btn btn-ghost-success" (click)="onEditarMesa(mesa.mesaId || 0)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

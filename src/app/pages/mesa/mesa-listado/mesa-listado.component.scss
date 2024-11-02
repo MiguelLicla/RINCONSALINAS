@@ -1,0 +1,34 @@
+.mesa-image {
+    height: 150px; /* Ajusta la altura según tus necesidades */
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+  }
+  
+  .card {
+    border: none; /* Elimina el borde de la tarjeta */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  .card.shadow {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s; /* Añade una transición suave al hover */
+    cursor: pointer; /* Cambia el cursor a mano al pasar el mouse */
+}
+
+.card.shadow:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+}
+
+  
+  .card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  }
+  
+  .card-text {
+    margin: 0; /* Elimina el margen predeterminado */
+  }
+  
+  .mesa-number {
+    font-weight: bold; /* Hacer el número más grueso */
+    color: #007bff; /* Cambiar el color al azul de Bootstrap */
+  }
+  

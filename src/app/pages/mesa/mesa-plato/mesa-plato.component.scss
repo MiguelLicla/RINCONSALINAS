@@ -1,0 +1,15 @@
+.dish-card {
+    cursor: pointer; /* Muestra el puntero como mano al pasar el ratón */
+    padding: 10px; /* Espaciado dentro de la tarjeta */
+    border: 1px solid #ddd; /* Bordes alrededor de la tarjeta */
+    margin-bottom: 10px; /* Espacio entre tarjetas */
+    transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+  }
+  
+  .dish-card:hover {
+    background-color: #f0f0f0; /* Cambia el color al pasar el ratón */
+  }
+  .modal {
+    z-index: 1050; /* Asegúrate de que esté sobre otros elementos */
+  }
+  

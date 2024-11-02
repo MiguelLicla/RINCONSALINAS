@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h4 class="card-title mb-0 flex-grow-1">Lista de Roles </h4>
+    <div class="d-flex gap-1">
+      <button class="btn btn-primary m-1 wp-200" (click)="onNuevo()"> Nuevo Rol</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive-FixHead">
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 200px">Rol</th>
+            <th>Descripción</th>
+            <th style="width: 60px">Activo</th>
+            <th style="width: 100px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaRol; let i=index ">
+
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td class="text-center">
+              <span *ngIf="item.flagActivo" class="badge bg-success">Activo</span>
+              <span *ngIf="!item.flagActivo" class="badge bg-danger"> Inactivo</span>
+            </td>
+            <td class="text-end py-1">
+              <button type="button" class="btn btn-ghost-success" (click)="onEditar(item.idRol)"><i
+                  class="bi bi-pencil"></i></button>
+              <button type="button" class="btn btn-ghost-danger" (click)="onEliminar(item.idRol)"><i
+                  class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div *ngIf="show && !modal" class="text-center vertical-align-center animated  fadeInUp" [ngStyle]="{'height': height}"
+    style="background: rgb(204 204 204 / 20%);">
+    <div>
+        <i class="fas fa-spin fa-sync fa-2x"></i> <span style="font-size: 25px;"> Cargando...</span>
+    </div>
+</div>
+
+
+<div *ngIf="show && modal" class="divMessageBox animated fadeIn fast">
+    <div class="MessageBoxContainer animated fadeIn fast">
+        <div class="MessageBoxMiddle mx-auto"  ><span class="MsgTitle">
+            <i class="fas fa-spin fa-sync text-primary me-3" style="font-size: 60px; float: left;"></i>
+                     Procesando...</span>
+            <p class="pText">Esto tomará solo un momento.</p>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="row ">
+    <div class="col-lg-4">
+
+        <ul class="list-group list-group-primary">
+            <li class="list-group-item active fs-4" aria-current="true">Maestras</li>
+            <li class="list-group-item">
+                <div class="input-icon-start">
+                    <i class="bi bi-search"></i>
+                    <input class="form-control" [(ngModel)]="filmaestra" type="text">
+                </div>
+            </li>
+            <ng-container *ngFor="let item of listaMaestra | fieldFilterContains :'descripcion': filmaestra ;let i = index">
+                <li class="list-group-item list-group-item-action" (click)="CargarMaestrosArgu(item, i)"> <i class="float-left me-2 bi bi-table"></i> {{ item.descripcion }}</li>
+            </ng-container>
+
+
+        </ul>
+    </div>
+    <div class="col-lg-8">
+
+
+
+
+
+        <div class="card">
+            <div class="card-header border-bottom-dashed align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1"><i class="bi bi-table"></i> {{titulo}}</h4>
+
+                <div class="d-flex gap-1">
+                    <div class="card-header-toolbar" style="width: 150px;" [hidden]="!flagMostrarHijos">
+                        <select class="form-select" (click)="filtrarHijos()" [(ngModel)]="idpadre">
+                            <option value="0">--Todos--</option>
+                            <option *ngFor="let item of listaPadre" [value]="item.idArgu">{{item.descripcion}}</option>
+                        </select>
+                    </div>
+                    <button *ngIf="flagMantenible" class="btn btn-sm btn-primary w-lg" (click)="nuevoArgu()"><i
+                            class="fa fa-file-medical"></i>
+                        Nuevo</button>
+                </div>
+
+
+
+            </div>
+            <!-- <app-loadin [show]="loadin"></app-loadin> -->
+            <!-- <div [hidden]="loadin"> -->
+            <div class="table-responsive-fixhead">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th *ngIf="MaestraSelect?.FlagCodigo" style="width: 80px">Codigo</th> -->
+                            <th>Nombre</th>
+                            <!-- <th *ngIf="MaestraSelect?.FlagAbreviado" style="width: 150px">Abreviado</th>
+                                    <th *ngIf="MaestraSelect?.FlagDescripcion">Descripcion</th> -->
+                            <th style="width:50px;text-align: center;">Activo</th>
+                            <th *ngIf="flagMantenible" style="width:100px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listaHijos">
+                            <!-- <td *ngIf="MaestraSelect.FlagCodigo">{{item.Codigo}}</td> -->
+                            <td>{{item.descripcion}}</td>
+                            <!-- <td *ngIf="MaestraSelect.FlagAbreviado">{{item.Abreviado}}</td> -->
+                            <!-- <td *ngIf="MaestraSelect.FlagDescripcion">{{item.Descripcion}}</td> -->
+                            <td style="text-align: center">
+                                <span *ngIf="item.flagActivo" class="badge bg-success">Activo</span>
+                                <span *ngIf="!item.flagActivo" class="badge bg-danger"> Inactivo</span>
+                            </td>
+                            <td *ngIf="flagMantenible" class="text-end py-1">
+                                <button type="button" class="btn btn-ghost-success" (click)="editarMaestraArgu(item.idArgu, item.idMaestra)"><i
+                                    class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-ghost-danger" (click)="eliminarMaestraArgu(item.idArgu)"><i
+                                    class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

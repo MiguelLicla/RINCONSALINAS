@@ -1,0 +1,56 @@
+
+<div class="modal-header">
+    <h4 class="modal-title">{{titulo}}</h4>
+    <button type="button" class="btn-close" (click)="modalRef.hide()"> </button>
+</div>
+
+
+<form [formGroup]="formGroup" onKeyPress="if(event.keyCode == 13)return false;">
+    <!-- <app-loadin [show]="loadin"></app-loadin> -->
+    <div  class="modal-body">
+        <div class="row g-2">
+            <div class="col-sm-12">
+                <label>Nombre</label>
+                <div class="form-check form-switch float-end ">
+                    <input type="checkbox" class="form-check-input" id="customCheck" formControlName="flagActivo">
+                    <label class="form-check-label" for="customCheck"> Activo</label>
+                </div>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+
+            <div class="col-sm-12" [hidden]='!Maestra.flagCodigo'>
+                <label>Codigo</label>
+                <input type="text" class="form-control" formControlName="codigo">
+            </div>
+
+            <div class="col-sm-12" [hidden]='!Maestra.flagAbreviado'>
+                <label>Abreviado</label>
+                <input type="text" class="form-control" formControlName="abreviado">
+            </div>
+
+            <div class="col-sm-12" [hidden]='Maestra.idPadre === 0'>
+                <label>{{Maestra.padreNombre}}</label>
+                <select class="form-control form-select" formControlName="idPadre">
+                    <option value="" disabled >-- Seleccione --</option>
+                    <option *ngFor="let item of listaPadre" [value]="item.idArgu">{{item.nombre}}</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12" [hidden]='!Maestra.flagDescripcion'>
+                <label>Descripción</label>
+                <input type="text" class="form-control" formControlName="descripcion">
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="modalRef.hide()">
+            Cancelar
+        </button>
+        <button *ngIf="flagMantenible" type="submit" (click)="guardarMaestraArgu()"  class="btn btn-sm btn-primary"
+            [disabled]="formGroup.pristine || loadinGuardar">
+            <div *ngIf="!loadinGuardar"><i class="fa fa-save"></i> Guardar</div>
+            <div *ngIf="loadinGuardar">Guardando... <i class="fa fa-spin fa-sync"></i></div>
+        </button> 
+    </div>
+</form>

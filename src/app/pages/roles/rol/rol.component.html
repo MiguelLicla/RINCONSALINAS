@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{titulo}}</h4>
+    <button type="button" class="btn-close" (click)="modalRef.hide()"> </button>
+</div>
+
+<form [formGroup]="formGroup" onKeyPress="if(event.keyCode == 13)return false;">
+    <div class="modal-body">
+        <div class="row g-2 mb-3">
+            <div class="col-sm-12 form-group">
+                <label>Nombre</label>
+                <div class="form-check form-switch float-end ">
+                    <input class="form-check-input" type="checkbox" id="customCheck" formControlName="flagActivo">
+                    <label class="form-check-label" for="customCheck">Activo</label>
+                </div>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-sm-12">
+                <label>Descripcion</label>
+                <textarea cols="30" rows="2" class="form-control" formControlName="descripcion"></textarea>
+            </div>
+
+            <div class="col-sm-12">
+                <label class="my-2">Asignar accesos al Rol</label>
+
+                <div class="table-responsive border" style="max-height: 350px;">
+                    <table class="table">
+                        <tbody>
+                            <ng-container
+                                *ngTemplateOutlet="recursiveTR; context:{ list: listaOpciones | fieldFilter:'idPadre':'0' , tabs:''}">
+                            </ng-container>
+                        </tbody>
+                    </table>
+                    <ng-template #recursiveTR let-list="list" let-tabs="tabs">
+                        <ng-container *ngFor="let item of list">
+                            <tr>
+                                <td style="width: 60px;" class="fs-5 text-center ">
+                                    <span [className]="item.icono"></span>
+                                </td>
+                                <td class="font-weight-bold">
+                                    {{tabs}} <i *ngIf="item.tipo==2" class="fa fa-cog"></i> {{item.nombre}}
+                                </td>
+                                <td class="text-center">
+                                    <div class="form-check form-switch float-end ">
+                                        <input class="form-check-input" type="checkbox" id="Activo{{item.idOpcion}}"
+                                            [(ngModel)]="item.flagActivo" [ngModelOptions]="{standalone: true}"
+                                           (ngModelChange)="onCheckOpcion(item)">
+                                        <label class="form-check-label" for="Activo{{item.idOpcion}}"></label>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <ng-container *ngIf="(listaOpciones | fieldFilter:'idPadre': item.idOpcion ).length > 0">
+                                <ng-container
+                                    *ngTemplateOutlet="recursiveTR; context:{ list: (listaOpciones | fieldFilter:'idPadre': item.idOpcion ) , tabs: tabs + '---'}">
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-template>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light me-auto" (click)="modalRef.hide()">
+            <i class="fas fa-angles-left me-1"></i> Cancelar
+        </button>
+        <button type="submit" (click)="onGuardar()" class="btn btn-primary"
+            [disabled]="formGroup.pristine || loadinGuardar">
+            <div *ngIf="!loadinGuardar"><i class="fas fa-save me-1"></i> Guardar</div>
+            <div *ngIf="loadinGuardar"><i class="fas fa-spin fa-sync me-1"></i> Guardando... </div>
+        </button>
+    </div>
+</form>

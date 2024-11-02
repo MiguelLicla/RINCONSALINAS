@@ -1,0 +1,43 @@
+//
+// _list-group.scss
+//
+
+
+@each $color,
+$value in $theme-colors {
+    .list-group-fill-#{$color} {
+        &.list-group-item {
+            color: color-contrast($value);
+            background-color: var(--#{$prefix}#{$color}) !important;
+            border-color: var(--#{$prefix}#{$color});
+        }
+    }
+}
+
+.list-group-item {
+    margin-bottom: 0px;
+    .list-text {
+        color: var(--#{$prefix}secondary-color);
+    }
+    &.active {
+        box-shadow: $element-shadow;
+        .list-title {
+            color: $white;
+        }
+        .list-text {
+            color: rgba($white, 0.50);
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .list-group-#{$color} {
+        .list-group-item-action {
+            &:is(:focus, :hover, .active) {
+                background-color: rgba(($value), 0.07);
+                color: $value;
+            }
+        }
+    }
+}

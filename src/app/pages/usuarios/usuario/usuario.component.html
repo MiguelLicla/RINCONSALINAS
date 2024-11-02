@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{titulo}}</h4>
+    <button type="button" class="btn-close" (click)="modalRef.hide()"> </button>
+</div>
+
+<form [formGroup]="formGroup" onKeyPress="if(event.keyCode == 13)return false;">
+    <div class="modal-body">
+        <div class="row g-2">
+            <div class="col-sm-6 form-group">
+                <label class="form-label">Usuario <i class="text-warning fa fa-info-circle"
+                tooltip="Ingresar un correo electrónico único, al cual el sistema le enviará información relevante."></i></label>
+                <input type="text" class="form-control" formControlName="userName" placeholder="name@example.com">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label class="form-label">Rol</label>
+                <div class="form-check form-switch float-end ">
+                    <input type="checkbox" class="form-check-input" id="activo" formControlName="flagActivo">
+                    <label class="form-check-label" for="activo">Activo</label>
+                </div>
+                <select class="form-select" formControlName="idRol">
+                <option value="" disabled>-- Seleccione -- </option>
+                <option *ngFor="let rol of listaRol" [value]="rol.idRol">{{rol.nombre}}</option>
+              </select>
+            </div>
+            <div class="col-sm-12 form-group">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light me-auto" (click)="modalRef.hide()">
+          <i class="fas fa-angles-left me-1"></i> Cancelar
+      </button>
+        <button type="submit" (click)="onGuardar()" class="btn btn-primary" [disabled]="formGroup.pristine || loadinGuardar">
+          <div *ngIf="!loadinGuardar"><i class="fas fa-save me-1"></i> Guardar</div>
+          <div *ngIf="loadinGuardar"><i class="fas fa-spin fa-sync me-1"></i> Guardando... </div>
+      </button>
+    </div>
+</form>
